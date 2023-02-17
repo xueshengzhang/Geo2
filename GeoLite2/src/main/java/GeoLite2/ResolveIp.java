@@ -18,8 +18,8 @@ import org.apache.log4j.Logger;
  */
 
 public class ResolveIp {
-    private static final String GEO_LITE_CITY_DB_FILE = "C:\\Users\\legion\\Desktop\\fsdownload\\GeoLite2-City.mmdb";
-    private static final String GEO_LITE_ASN_DB_FILE = "C:\\Users\\legion\\Desktop\\fsdownload\\GeoLite2-ASN.mmdb";
+    private static final String GEO_LITE_CITY_DB_FILE = "src/main/resources/GeoLite2-City.mmdb";
+    private static final String GEO_LITE_ASN_DB_FILE = "src/main/resources/GeoLite2-ASN.mmdb";
     private volatile static ResolveIp resolveIp;
     private DatabaseReader cityReader;
     private DatabaseReader asnReader;
@@ -39,7 +39,7 @@ public class ResolveIp {
         }
     }
     /**
-     * 双重检索单例
+     * 获取单例
      */
     public static ResolveIp getResolveIp(){
         if(resolveIp==null){
@@ -82,7 +82,6 @@ public class ResolveIp {
             ipEntity.setLongitude(location.getLongitude());
             ipEntity.setIpAddress(traits.getIpAddress());
             ipEntity.setAutonomousSystemOrganization(asnResponse.getAutonomousSystemOrganization());
-            log.info(JSON.toJSONString(cityResponse));
             log.info(JSON.toJSONString(ipEntity));
             return ipEntity;
         } catch (UnknownHostException e) {
@@ -94,9 +93,22 @@ public class ResolveIp {
     }
 
     public static void main(String[] args) {
-        ResolveIp.getResolveIp().getResolveInfo("218.22.32.186");
+        // IPV4 离线使用
+        ResolveIp.getResolveIp().getResolveInfo("212.22.32.186");
+        // IPV6 离线使用
         ResolveIp.getResolveIp().getResolveInfo("::7040:779D");
         ResolveIp.getResolveIp().getResolveInfo("::FFFF:7040:779D");
-
+        // 域名 须联网
+        ResolveIp.getResolveIp().getResolveInfo("sina.cn");
+        ResolveIp.getResolveIp().getResolveInfo("baidu.com");
+        /**
+         * 控制台信息
+         * 2023-02-17 12:04:28,485  INFO main (GeoLite2.ResolveIp.getResolveInfo:85) - {"autonomousSystemOrganization":"Vodafone-panafon Hellenic Telecommunications Company SA","cityName":"雅典","continent":"欧洲","countryCode":"GR","countryName":"希腊","ipAddress":"212.22.32.186","latitude":37.9842,"longitude":23.7353,"provinceCode":"I"}
+         * 2023-02-17 12:04:28,487  INFO main (GeoLite2.ResolveIp.getResolveInfo:85) - {"autonomousSystemOrganization":"China Unicom Shanghai network","continent":"亚洲","countryCode":"CN","countryName":"中国","ipAddress":"0:0:0:0:0:0:7040:779d","latitude":31.242,"longitude":121.476,"provinceCode":"SH","provinceName":"上海"}
+         * 2023-02-17 12:04:28,487  INFO main (GeoLite2.ResolveIp.getResolveInfo:85) - {"autonomousSystemOrganization":"China Unicom Shanghai network","continent":"亚洲","countryCode":"CN","countryName":"中国","ipAddress":"112.64.119.157","latitude":31.242,"longitude":121.476,"provinceCode":"SH","provinceName":"上海"}
+         * 2023-02-17 12:04:28,497  INFO main (GeoLite2.ResolveIp.getResolveInfo:85) - {"autonomousSystemOrganization":"Chinanet","continent":"亚洲","countryCode":"CN","countryName":"中国","ipAddress":"183.60.95.219","latitude":34.7732,"longitude":113.722}
+         * 2023-02-17 12:04:28,498  INFO main (GeoLite2.ResolveIp.getResolveInfo:85) - {"autonomousSystemOrganization":"CHINA UNICOM China169 Backbone","cityName":"保定市","continent":"亚洲","countryCode":"CN","countryName":"中国","ipAddress":"110.242.68.66","latitude":38.8511,"longitude":115.4879,"provinceCode":"HE","provinceName":"河北省"}
+         */
+      
     }
 }
