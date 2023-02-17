@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GrepConsole">
+    <option name="pinnedGrepConsolesState">
+      <PinnedGrepConsolesState>
+        <option name="map">
+          <map>
+            <entry>
+              <key>
+                <RunConfigurationRef>
+                  <option name="name" value="Build" />
+                </RunConfigurationRef>
+              </key>
+              <value>
+                <Pins>
+                  <option name="pins">
+                    <list>
+                      <Pin>
+                        <option name="consoleUUID" value="a1b56235-3e04-4d8c-a757-11998e8e6a1a" />
+                        <option name="contentType" value="Build" />
+                        <option name="grepModel">
+                          <GrepModel>
+                            <option name="expression" value="Cannot resolve com.maxmind.geoip2:geoip2:2.12.0" />
+                            <option name="unlessExpression" value="" />
+                          </GrepModel>
+                        </option>
+                      </Pin>
+                    </list>
+                  </option>
+                </Pins>
+              </value>
+            </entry>
+          </map>
+        </option>
+      </PinnedGrepConsolesState>
+    </option>
+  </component>
+</project>
